@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "632934358486",
+    "firebase_url": "https://classroom-65093.firebaseio.com",
+    "project_id": "classroom-65093",
+    "storage_bucket": "classroom-65093.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632934358486:android:3d874316dd7d7bfe",
+        "android_client_info": {
+          "package_name": "com.example.rifat.classroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632934358486-03aqasu6afjdifna2dip71j24bgbfpol.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rifat.classroom",
+            "certificate_hash": "354e3747eb8dd0c982e13dca09f674eec927701a"
+          }
+        },
+        {
+          "client_id": "632934358486-1akjb0243f03vi03m4n4r693a14m0jo8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRMjxM-Ml7Ovz5DAdZGl_IIXpaIdsS78s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632934358486-1akjb0243f03vi03m4n4r693a14m0jo8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
