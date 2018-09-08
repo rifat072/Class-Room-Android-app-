@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.rifat.classroom.AccountActivity.Login;
+
 public class Welcome extends AppCompatActivity {
 
     @Override

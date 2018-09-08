@@ -1,4 +1,4 @@
-package com.example.rifat.classroom;
+package com.example.rifat.classroom.AccountActivity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rifat.classroom.MainNavigation;
+import com.example.rifat.classroom.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -61,14 +63,11 @@ public class Login extends AppCompatActivity {
         if(mAuth.getCurrentUser()!=null){
             ///logged in;
             FirebaseUser user= mAuth.getCurrentUser();
-            Intent i= new Intent(Login.this,Test.class);
+            Intent i= new Intent(Login.this,MainNavigation.class);
             finish();
             startActivity(i);
         }
-        else{
 
-
-        }
 
     }
 
@@ -81,7 +80,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(Login.this,"Failed",Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            Intent i= new Intent(Login.this,Test.class);
+                            Intent i= new Intent(Login.this,MainNavigation.class);
                             finish();
                             startActivity(i);
                         }

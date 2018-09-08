@@ -1,4 +1,4 @@
-package com.example.rifat.classroom;
+package com.example.rifat.classroom.AccountActivity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.rifat.classroom.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,8 +27,11 @@ public class Registration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_registration);
+        getSupportActionBar().hide();
+
         username=(EditText)findViewById(R.id.username);
         password=(EditText)findViewById(R.id.password);
         passwordrepeat=(EditText)findViewById(R.id.passwordrepeat);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".AccountActivity.Login">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:paddingBottom="16dp"
         android:weightSum="100"
         android:gravity="center"
-        android:background="#303030"
+        android:background="@drawable/gradient"
         android:orientation="vertical">
 
         <LinearLayout

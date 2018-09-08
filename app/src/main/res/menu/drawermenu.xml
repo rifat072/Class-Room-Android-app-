@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/routine" android:title="Routine" android:icon="@drawable/ic_baseline_dashboard_24px"/>
+        <item android:id="@+id/event" android:title="Events" android:icon="@drawable/ic_baseline_event_24px"/>
+        <item android:id="@+id/search" android:title="Search" android:icon="@drawable/ic_baseline_search_24px"/>
+        <item android:id="@+id/settings" android:title="Settings" android:icon="@drawable/ic_baseline_settings_20px"/>
+        <item android:id="@+id/activities" android:title="Activities" android:icon="@drawable/ic_baseline_trending_up_24px"/>
+    </group>
+    <item android:title="Account">
+        <menu>
+            <item android:id="@+id/account" android:title="Account Settings" android:icon="@drawable/ic_baseline_settings_20px"/>
+
+            <item android:id="@+id/logout" android:title="Logout" android:icon="@drawable/ic_baseline_input_24px"/>
+
+        </menu>
+    </item>
+
+
+</menu>
