@@ -2,9 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff2788">
-    <TextView
+    android:background="#ff2788"
+    android:weightSum="100">
+
+
+
+    <LinearLayout
+        android:layout_weight="10"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="routine layout"/>
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/todaybtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Today's Routine" />
+
+        <Button
+            android:id="@+id/fullbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Full Routine" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="80"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/routine_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/editbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edit Routine" />
+    </LinearLayout>
+
+
 </LinearLayout>

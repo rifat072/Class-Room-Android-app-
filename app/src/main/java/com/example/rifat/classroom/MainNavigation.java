@@ -14,6 +14,8 @@ import android.widget.Button;
 
 import com.example.rifat.classroom.AccountActivity.Login;
 import com.example.rifat.classroom.Fragments.RoutineFragment;
+import com.example.rifat.classroom.Fragments.RoutineFragments.Full;
+import com.example.rifat.classroom.Fragments.RoutineFragments.Today;
 import com.example.rifat.classroom.Fragments.SettingsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +27,8 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToogle;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,8 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
                     new RoutineFragment()).commit();
             navigationView.setCheckedItem(R.id.routine);
         }
+
+
 
 
     }
