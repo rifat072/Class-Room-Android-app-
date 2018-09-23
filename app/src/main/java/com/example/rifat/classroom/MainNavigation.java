@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.rifat.classroom.AccountActivity.Login;
+import com.example.rifat.classroom.Fragments.Account;
 import com.example.rifat.classroom.Fragments.RoutineFragment;
 import com.example.rifat.classroom.Fragments.RoutineFragments.Full;
 import com.example.rifat.classroom.Fragments.RoutineFragments.Today;
@@ -73,7 +74,10 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
                         mAuth.signOut();
                         finish();
                         startActivity(new Intent(getApplicationContext(), Login.class));
-
+                break;
+            case R.id.account:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Account()).commit();
                 break;
 
 

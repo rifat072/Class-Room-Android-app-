@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rifat.classroom.R;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +34,7 @@ public class edit extends Fragment {
             @Override
             public void onClick(View v) {
                 addArtist();
+                Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
             }
         });
 
