@@ -18,34 +18,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class edit extends Fragment {
 
-    EditText time,title;
-    Button add;
-    DatabaseReference databasesubject;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mylayout = inflater.inflate(R.layout.editroutine,container,false);
-        time = (EditText)mylayout.findViewById(R.id.time);
-        title = (EditText)mylayout.findViewById(R.id.title);
-        add = (Button)mylayout.findViewById(R.id.add);
-        databasesubject = FirebaseDatabase.getInstance().getReference("routine");
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addArtist();
-                Toast.makeText(getActivity(), "Added", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         return mylayout;
     }
 
-    private void addArtist(){
-        String tm = time.getText().toString().trim();
-        String tt = title.getText().toString().trim();
-        subject ss = new subject(tm,tt,"1");
-        databasesubject.child("1"+ tm).setValue(ss);
-    }
+
 }

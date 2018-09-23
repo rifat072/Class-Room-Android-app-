@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AccountActivity.Login" />
-        <activity android:name=".MainNavigation"/>
+        <activity android:name=".MainNavigation" />
         <activity android:name=".AccountActivity.Registration" />
     </application>
 

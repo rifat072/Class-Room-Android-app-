@@ -43,8 +43,7 @@ public class Account extends Fragment {
         email = (TextView)mylaout.findViewById(R.id.email);
         update = (Button)mylaout.findViewById(R.id.update);
 
-        String umail = user.getEmail();
-        id.setText(umail);
+        id.setText(user.getDisplayName());
         name.setText(user.getDisplayName());
         email.setText(user.getEmail());
 
