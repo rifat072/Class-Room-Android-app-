@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditActivity"
+    android:orientation="vertical"
+    android:weightSum="20"
+    android:background="@drawable/gradient">
+
 
     <TableLayout
         android:layout_width="match_parent"
@@ -73,51 +80,51 @@
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="08:00 08:50"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su1"
+            <EditText
+                android:id="@+id/su1edit"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo1"
+            <EditText
+                android:id="@+id/mo1edit"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu1"
+            <EditText
+                android:id="@+id/tu1edit"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we1"
+            <EditText
+                android:id="@+id/we1edit"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th1"
+            <EditText
+                android:id="@+id/th1edit"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
@@ -138,8 +145,8 @@
                 android:text="08:50 09:40"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su2"
+            <EditText
+                android:id="@+id/su2edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -147,8 +154,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo2"
+            <EditText
+                android:id="@+id/mo2edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -156,8 +163,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu2"
+            <EditText
+                android:id="@+id/tu2edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -165,8 +172,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we2"
+            <EditText
+                android:id="@+id/we2edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -174,8 +181,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th2"
+            <EditText
+                android:id="@+id/th2edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -198,8 +205,8 @@
                 android:text="09:40 10:30"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su3"
+            <EditText
+                android:id="@+id/su3edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -207,8 +214,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo3"
+            <EditText
+                android:id="@+id/mo3edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -216,8 +223,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu3"
+            <EditText
+                android:id="@+id/tu3edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -225,8 +232,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we3"
+            <EditText
+                android:id="@+id/we3edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -234,8 +241,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th3"
+            <EditText
+                android:id="@+id/th3edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -259,8 +266,8 @@
                 android:text="10:40 11:30"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su4"
+            <EditText
+                android:id="@+id/su4edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -268,8 +275,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo4"
+            <EditText
+                android:id="@+id/mo4edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -277,8 +284,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu4"
+            <EditText
+                android:id="@+id/tu4edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -286,8 +293,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we4"
+            <EditText
+                android:id="@+id/we4edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -295,8 +302,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th4"
+            <EditText
+                android:id="@+id/th4edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -320,8 +327,8 @@
                 android:text="11:30 12:20"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su5"
+            <EditText
+                android:id="@+id/su5edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -329,8 +336,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo5"
+            <EditText
+                android:id="@+id/mo5edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -338,8 +345,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu5"
+            <EditText
+                android:id="@+id/tu5edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -347,8 +354,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we5"
+            <EditText
+                android:id="@+id/we5edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -356,8 +363,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th5"
+            <EditText
+                android:id="@+id/th5edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -380,8 +387,8 @@
                 android:text="12:30 01:10"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su6"
+            <EditText
+                android:id="@+id/su6edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -389,8 +396,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo6"
+            <EditText
+                android:id="@+id/mo6edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -398,8 +405,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu6"
+            <EditText
+                android:id="@+id/tu6edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -407,8 +414,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we6"
+            <EditText
+                android:id="@+id/we6edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -416,8 +423,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th6"
+            <EditText
+                android:id="@+id/th6edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -447,8 +454,8 @@
                 android:text="02:30 03:20"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su7"
+            <EditText
+                android:id="@+id/su7edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -456,8 +463,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo7"
+            <EditText
+                android:id="@+id/mo7edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -465,8 +472,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu7"
+            <EditText
+                android:id="@+id/tu7edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -474,8 +481,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we7"
+            <EditText
+                android:id="@+id/we7edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -483,8 +490,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th7"
+            <EditText
+                android:id="@+id/th7edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -507,8 +514,8 @@
                 android:text="03:20 04:10"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su8"
+            <EditText
+                android:id="@+id/su8edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -516,8 +523,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo8"
+            <EditText
+                android:id="@+id/mo8edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -525,8 +532,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu8"
+            <EditText
+                android:id="@+id/tu8edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -534,8 +541,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we8"
+            <EditText
+                android:id="@+id/we8edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -543,8 +550,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th8"
+            <EditText
+                android:id="@+id/th8edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -567,8 +574,8 @@
                 android:text="04:10 05:00"
                 android:textColor="@color/white"/>
 
-            <TextView
-                android:id="@+id/su9"
+            <EditText
+                android:id="@+id/su9edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -576,8 +583,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/mo9"
+            <EditText
+                android:id="@+id/mo9edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -585,8 +592,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/tu9"
+            <EditText
+                android:id="@+id/tu9edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -594,8 +601,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/we9"
+            <EditText
+                android:id="@+id/we9edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -603,8 +610,8 @@
                 android:inputType="textPersonName"
                 android:text="Name" />
 
-            <TextView
-                android:id="@+id/th9"
+            <EditText
+                android:id="@+id/th9edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -614,4 +621,11 @@
         </TableRow>
 
     </TableLayout>
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:text="Update" />
 </LinearLayout>

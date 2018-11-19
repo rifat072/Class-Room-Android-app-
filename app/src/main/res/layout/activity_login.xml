@@ -61,12 +61,12 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/username"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#55000000"
                     android:ems="10"
-                    android:hint="Username"
+                    android:hint="Email"
                     android:inputType="textPersonName"
                     android:padding="16dp"
                     android:textColor="@android:color/white"

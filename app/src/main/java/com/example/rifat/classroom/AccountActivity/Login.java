@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -25,8 +26,6 @@ public class Login extends AppCompatActivity {
     private Button login;
     private EditText username,password;
     private TextView register;
-    public Login() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class Login extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         login=(Button)findViewById(R.id.login);
-        username=(EditText)findViewById(R.id.username);
+        username=(EditText)findViewById(R.id.email);
         password=(EditText)findViewById(R.id.password);
         register=(TextView) findViewById(R.id.register);
 
@@ -47,6 +46,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String email=(String)username.getText().toString().trim();
                 String pass=(String)password.getText().toString().trim();
+                if(email == null || pass == null) return ;
                 signin(email,pass);
             }
         });
@@ -81,11 +81,10 @@ public class Login extends AppCompatActivity {
                         }
                         else{
                             Intent i= new Intent(Login.this,MainNavigation.class);
-                            finish();
                             startActivity(i);
+                            Login.this.finish();
                         }
                     }
                 });
-
     }
 }

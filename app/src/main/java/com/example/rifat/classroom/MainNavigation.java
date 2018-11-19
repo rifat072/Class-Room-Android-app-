@@ -3,6 +3,7 @@ package com.example.rifat.classroom;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +18,7 @@ import com.example.rifat.classroom.Fragments.Account;
 import com.example.rifat.classroom.Fragments.RoutineFragment;
 import com.example.rifat.classroom.Fragments.RoutineFragments.Full;
 import com.example.rifat.classroom.Fragments.RoutineFragments.Today;
+import com.example.rifat.classroom.Fragments.SearchFragment;
 import com.example.rifat.classroom.Fragments.SettingsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,15 +68,19 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new SettingsFragment()).commit();
                 break;
+            case R.id.search:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SearchFragment()).commit();
+                break;
 
             case R.id.logout:
                 mAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = mAuth.getCurrentUser();
-
-                        mAuth.signOut();
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), Login.class));
+                mAuth.signOut();
+                startActivity(new Intent(getApplicationContext(), Login.class));
+                MainNavigation.this.finish();
                 break;
+
             case R.id.account:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Account()).commit();
@@ -101,4 +107,6 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else super.onBackPressed();
     }
+
+
 }

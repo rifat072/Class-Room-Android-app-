@@ -16,6 +16,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Registration extends AppCompatActivity {
 
@@ -23,6 +29,10 @@ public class Registration extends AppCompatActivity {
     private Button register;
     private String uname,pass,pass2;
     private FirebaseAuth mAuth;
+
+    private DocumentReference mDocRef;
+
+    Map<String, Object > dataToSave = new HashMap<String, Object>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +54,14 @@ public class Registration extends AppCompatActivity {
                 uname=username.getText().toString().trim();
                 pass=password.getText().toString().trim();
                 pass2=passwordrepeat.getText().toString().trim();
+                if(uname == null || pass == null || pass2 == null) return;
                 Log.d("uname",uname);
                 Log.d("password",pass);
                 if(pass.equals(pass2)){
                     createUser(uname,pass);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Registratin Failed",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Password doesn't match",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -64,12 +75,21 @@ public class Registration extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),"Registratin Failed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Check your Connection! Password should be atleast 8 character long.",Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            startActivity(new Intent(getApplicationContext(),Login.class));
-                            Toast.makeText(getApplicationContext(),"Account Created",Toast.LENGTH_SHORT).show();
 
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            String email = user.getEmail();
+                            mDocRef = FirebaseFirestore.getInstance().document("UserTable/" + email + "/");
+                            dataToSave.put("f_name","First Name");
+                            dataToSave.put("l_name","Last Name");
+                            dataToSave.put("status","Hello World!");
+                            dataToSave.put("image","");
+                            mDocRef.set(dataToSave);
+                            Toast.makeText(getApplicationContext(),"Account Created",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),Login.class));
+                            Registration.this.finish();
                         }
                     }
                 });

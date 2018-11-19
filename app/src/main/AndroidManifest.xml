@@ -3,6 +3,8 @@
     package="com.example.rifat.classroom">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -21,6 +23,7 @@
         <activity android:name=".AccountActivity.Login" />
         <activity android:name=".MainNavigation" />
         <activity android:name=".AccountActivity.Registration" />
+        <activity android:name=".EditActivity"></activity>
     </application>
 
 </manifest>
