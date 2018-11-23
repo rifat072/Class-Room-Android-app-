@@ -7,12 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainNavigation"
     tools:openDrawer="start">
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <!--
 
+        -->
         
         <FrameLayout
             android:id="@+id/fragment_container"

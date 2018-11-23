@@ -1,4 +1,4 @@
-package com.example.rifat.classroom.Fragments;
+package com.example.rifat.classroom.UnderFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.rifat.classroom.EditActivity;
-import com.example.rifat.classroom.Fragments.RoutineFragments.Full;
-import com.example.rifat.classroom.Fragments.RoutineFragments.Today;
+import com.example.rifat.classroom.UnderFragments.UnderRoutineFragments.Full;
+import com.example.rifat.classroom.UnderFragments.UnderRoutineFragments.Today;
 import com.example.rifat.classroom.R;
 
 

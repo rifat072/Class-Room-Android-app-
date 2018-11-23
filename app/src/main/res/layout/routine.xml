@@ -18,14 +18,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Today's Routine" />
+            android:text="Today's Routine"
+            android:background="@drawable/gradient_1"/>
 
         <Button
             android:id="@+id/fullbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Full Routine" />
+            android:text="Full Routine"
+            android:background="@drawable/gradient_1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Edit Routine" />
+            android:text="Edit Routine"
+            android:background="@drawable/gradient_1"/>
     </LinearLayout>
 
 

@@ -1,5 +1,6 @@
 package com.example.rifat.classroom.AccountActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -17,11 +18,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class Registration extends AppCompatActivity {
 
@@ -29,8 +33,10 @@ public class Registration extends AppCompatActivity {
     private Button register;
     private String uname,pass,pass2;
     private FirebaseAuth mAuth;
+    private ProgressDialog loadingbar;
 
     private DocumentReference mDocRef;
+    private DatabaseReference RootRef;
 
     Map<String, Object > dataToSave = new HashMap<String, Object>();
 
@@ -41,12 +47,13 @@ public class Registration extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_registration);
         getSupportActionBar().hide();
-
+        loadingbar = new ProgressDialog(this);
         username=(EditText)findViewById(R.id.username);
         password=(EditText)findViewById(R.id.password);
         passwordrepeat=(EditText)findViewById(R.id.passwordrepeat);
         register=(Button)findViewById(R.id.register);
         mAuth = FirebaseAuth.getInstance();
+        RootRef = FirebaseDatabase.getInstance().getReference();
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,8 +62,6 @@ public class Registration extends AppCompatActivity {
                 pass=password.getText().toString().trim();
                 pass2=passwordrepeat.getText().toString().trim();
                 if(uname == null || pass == null || pass2 == null) return;
-                Log.d("uname",uname);
-                Log.d("password",pass);
                 if(pass.equals(pass2)){
                     createUser(uname,pass);
                 }
@@ -68,26 +73,27 @@ public class Registration extends AppCompatActivity {
 
     }
     private void createUser(String email, String pass) {
-        Log.d("email",email);
-        Log.d("pass",pass);
+        loadingbar.setTitle("Creating New Account");
+        loadingbar.setMessage("Please Wait, While we are creating new account for you.");
+        loadingbar.setCanceledOnTouchOutside(false);
+        loadingbar.show();
         mAuth.createUserWithEmailAndPassword(email,pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(),"Check your Connection! Password should be atleast 8 character long.",Toast.LENGTH_SHORT).show();
+                            String meassage = task.getException().toString();
+                            Toast.makeText(getApplicationContext(),"Error: "+meassage,Toast.LENGTH_LONG);
+                            loadingbar.dismiss();
                         }
                         else{
 
                             FirebaseUser user = mAuth.getCurrentUser();
                             String email = user.getEmail();
-                            mDocRef = FirebaseFirestore.getInstance().document("UserTable/" + email + "/");
-                            dataToSave.put("f_name","First Name");
-                            dataToSave.put("l_name","Last Name");
-                            dataToSave.put("status","Hello World!");
-                            dataToSave.put("image","");
-                            mDocRef.set(dataToSave);
+                            String uid = user.getUid();
+                            RootRef.child("Users").child(uid).setValue("");
                             Toast.makeText(getApplicationContext(),"Account Created",Toast.LENGTH_SHORT).show();
+                            loadingbar.dismiss();
                             startActivity(new Intent(getApplicationContext(),Login.class));
                             Registration.this.finish();
                         }

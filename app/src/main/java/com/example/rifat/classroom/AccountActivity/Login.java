@@ -1,5 +1,6 @@
 package com.example.rifat.classroom.AccountActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,7 @@ public class Login extends AppCompatActivity {
     private Button login;
     private EditText username,password;
     private TextView register;
-
+    private ProgressDialog loadingbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class Login extends AppCompatActivity {
         username=(EditText)findViewById(R.id.email);
         password=(EditText)findViewById(R.id.password);
         register=(TextView) findViewById(R.id.register);
+        loadingbar = new ProgressDialog(this);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +74,21 @@ public class Login extends AppCompatActivity {
     }
 
     private void signin(String email, String pass) {
+        loadingbar.setTitle("Signing In");
+        loadingbar.setMessage("Please Wait...");
+        loadingbar.setCanceledOnTouchOutside(false);
+        loadingbar.show();
         mAuth.signInWithEmailAndPassword(email,pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                            Toast.makeText(Login.this,"Failed",Toast.LENGTH_SHORT).show();
+                            loadingbar.dismiss();
+                            String message = task.getException().toString();
+                            Toast.makeText(Login.this,message,Toast.LENGTH_SHORT).show();
                         }
                         else{
+                            loadingbar.dismiss();
                             Intent i= new Intent(Login.this,MainNavigation.class);
                             startActivity(i);
                             Login.this.finish();

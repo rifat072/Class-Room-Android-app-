@@ -1,4 +1,4 @@
-package com.example.rifat.classroom.Fragments;
+package com.example.rifat.classroom.UnderFragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +10,13 @@ import android.view.ViewGroup;
 
 import com.example.rifat.classroom.R;
 
-public class SettingsFragment extends Fragment {
-
+public class SearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.settings,container,false);
+        View mylayout = inflater.inflate(R.layout.search, container, false);
 
+
+        return mylayout;
     }
 }
