@@ -4,13 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:background="@drawable/headerbg">
-    <ImageView
-        android:src="@drawable/user"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/header_profile_image"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:src="@drawable/profile_image"/>
     <TextView
+        android:id="@+id/header_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name Name"
@@ -19,9 +21,10 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"/>
     <TextView
+        android:id="@+id/header_profile_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="abc@abc.com"
+        android:text="status"
         android:textColor="@color/white"
         android:layout_marginLeft="20dp"/>
 

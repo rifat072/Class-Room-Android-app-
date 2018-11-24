@@ -18,13 +18,13 @@ public class MessageFragment extends Fragment {
     private ViewPager myViewPager;
     private TabLayout myTabLayout;
     private TabAccessorAdapterMessages myTabAccessorAdapter;
-    
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mylayout = inflater.inflate(R.layout.message,container,false);
         myViewPager = (ViewPager)mylayout.findViewById(R.id.main_tabs_pager);
-        myTabAccessorAdapter = new TabAccessorAdapterMessages(getFragmentManager());
+        myTabAccessorAdapter = new TabAccessorAdapterMessages(getChildFragmentManager());
         myViewPager.setAdapter(myTabAccessorAdapter);
         myTabLayout = (TabLayout)mylayout.findViewById(R.id.main_tabs);
         myTabLayout.setupWithViewPager(myViewPager);

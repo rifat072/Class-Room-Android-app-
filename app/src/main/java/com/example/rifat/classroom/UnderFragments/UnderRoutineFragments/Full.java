@@ -40,10 +40,16 @@ public class Full extends Fragment{
         email = user.getEmail();
         ref = "UserTable/" + email + "/Routine/";
         findViewByIdlist(mylayout);
-        LoadRoutine();
+
 
         return mylayout;
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LoadRoutine();
     }
 
     private void LoadRoutine() {
@@ -60,7 +66,6 @@ public class Full extends Fragment{
                 if(documentSnapshot.exists()){
                     for(int j = 1; j <= 9 ; j++){
                         routine[i][j].setText(documentSnapshot.getString("" + j));
-                        Log.e(i + " " + j,documentSnapshot.getString("" + j));
 
                     }
                 }

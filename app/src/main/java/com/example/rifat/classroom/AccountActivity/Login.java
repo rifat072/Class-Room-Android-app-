@@ -20,6 +20,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class Login extends AppCompatActivity {
 
@@ -28,6 +31,7 @@ public class Login extends AppCompatActivity {
     private EditText username,password;
     private TextView register;
     private ProgressDialog loadingbar;
+    private DatabaseReference UsersRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +40,7 @@ public class Login extends AppCompatActivity {
         getSupportActionBar().hide();
 
         mAuth = FirebaseAuth.getInstance();
-
+        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         login=(Button)findViewById(R.id.login);
         username=(EditText)findViewById(R.id.email);
         password=(EditText)findViewById(R.id.password);
@@ -56,6 +60,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Registration.class));
+                Login.this.finish();
             }
         });
 
@@ -66,8 +71,9 @@ public class Login extends AppCompatActivity {
             ///logged in;
             FirebaseUser user= mAuth.getCurrentUser();
             Intent i= new Intent(Login.this,MainNavigation.class);
-            finish();
+
             startActivity(i);
+            Login.this.finish();
         }
 
 
@@ -82,16 +88,26 @@ public class Login extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()){
-                            loadingbar.dismiss();
-                            String message = task.getException().toString();
-                            Toast.makeText(Login.this,message,Toast.LENGTH_SHORT).show();
+                        if(task.isSuccessful()){
+                            String currentUserId = mAuth.getCurrentUser().getUid();
+                            String devicetoken = FirebaseInstanceId.getInstance().getToken();
+                            UsersRef.child(currentUserId).child("device token")
+                                    .setValue(devicetoken)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            loadingbar.dismiss();
+                                            Intent i= new Intent(Login.this,MainNavigation.class);
+                                            startActivity(i);
+                                            Login.this.finish();
+                                        }
+                                    });
+
                         }
                         else{
                             loadingbar.dismiss();
-                            Intent i= new Intent(Login.this,MainNavigation.class);
-                            startActivity(i);
-                            Login.this.finish();
+                            String message = task.getException().toString();
+                            Toast.makeText(Login.this,message,Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

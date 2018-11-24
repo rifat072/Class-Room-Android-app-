@@ -50,4 +50,5 @@ public class TabAccessorAdapterMessages extends FragmentPagerAdapter{
                 return null;
         }
     }
+
 }

@@ -1,22 +1,19 @@
-package com.example.rifat.classroom.UnderFragments;
+package com.example.rifat.classroom;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.rifat.classroom.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,18 +27,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageActivity;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
-
-public class Account extends Fragment {
-
+public class AccountSettingsActivity extends AppCompatActivity {
 
     private Button UpdateAccountSettings;
     private EditText username,userstatus;
@@ -53,15 +45,13 @@ public class Account extends Fragment {
     private StorageReference UserProfileImageRef;
     private ProgressDialog loadingbar;
 
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mylaout =  inflater.inflate(R.layout.account,container,false);
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_account_settings);
         UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
-        loadingbar = new ProgressDialog(getContext());
-        findViewByIdList(mylaout);
+        loadingbar = new ProgressDialog(this);
+        findViewByIdList();
         RetriveUserInformation();
 
 
@@ -81,11 +71,7 @@ public class Account extends Fragment {
                 startActivityForResult(gallaryIntent,PICK_IMAGE);
             }
         });
-
-        return mylaout;
     }
-
-
 
     private void RetriveUserInformation() {
 
@@ -109,11 +95,11 @@ public class Account extends Fragment {
         });
     }
 
-    private void findViewByIdList(View mylaout) {
-        UpdateAccountSettings = (Button)mylaout.findViewById(R.id.update_user_settings);
-        username = (EditText)mylaout.findViewById(R.id.set_profile_name);
-        userstatus = (EditText)mylaout.findViewById(R.id.set_user_status);
-        userProfileImage = (CircleImageView)mylaout.findViewById(R.id.profile_image);
+    private void findViewByIdList() {
+        UpdateAccountSettings = (Button)findViewById(R.id.update_user_settings);
+        username = (EditText)findViewById(R.id.set_profile_name);
+        userstatus = (EditText)findViewById(R.id.set_user_status);
+        userProfileImage = (CircleImageView)findViewById(R.id.profile_image);
         mAuth = FirebaseAuth.getInstance();
         CurrentUserId = mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -121,7 +107,10 @@ public class Account extends Fragment {
     private void UpdateSettings(){
         String uname = username.getText().toString().trim();
         String status = userstatus.getText().toString().trim();
-        if(uname == null) uname = "";
+        if(TextUtils.isEmpty(uname)) {
+            Toast.makeText(getApplicationContext(),"You must provide a Name",Toast.LENGTH_LONG).show();
+            return;
+        }
         if(status == null) status = "";
         HashMap<String, Object> profileMap= new HashMap<>();
 
@@ -132,11 +121,14 @@ public class Account extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getContext(),"Profile Updated Successfully",Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(),"Profile Updated Successfully",Toast.LENGTH_LONG).show();
+                    Intent gotoNavigation = new Intent(AccountSettingsActivity.this,MainNavigation.class);
+                    startActivity(gotoNavigation);
+                    finish();
                 }
                 else{
                     String message = task.getException().toString();
-                    Toast.makeText(getContext(),"Error : "+ message,Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(),"Error : "+ message,Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -148,7 +140,7 @@ public class Account extends Fragment {
         if(resultCode == Activity.RESULT_OK && requestCode == PICK_IMAGE){
             Log.e("OnIf","AsChe");
             Uri ImageUri = data.getData();
-            CropImage.activity(ImageUri).setGuidelines(CropImageView.Guidelines.ON).setAspectRatio(1,1).start(getContext(), this);
+            CropImage.activity(ImageUri).setGuidelines(CropImageView.Guidelines.ON).setAspectRatio(1,1).start(AccountSettingsActivity.this);
         }
         if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
@@ -163,7 +155,7 @@ public class Account extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(getActivity(),"Profile Image Uploaded Successfully",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"Profile Image Uploaded Successfully",Toast.LENGTH_LONG).show();
                             final String downloadUrl = task.getResult().getDownloadUrl().toString();
                             RootRef.child("Users").child(CurrentUserId).child("image").setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -174,7 +166,7 @@ public class Account extends Fragment {
                                     else{
                                         loadingbar.dismiss();
                                         String message = task.getException().toString();
-                                        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
@@ -182,7 +174,7 @@ public class Account extends Fragment {
                         }
                         else{
                             String message = task.getException().toString();
-                            Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                         }
 
                     }

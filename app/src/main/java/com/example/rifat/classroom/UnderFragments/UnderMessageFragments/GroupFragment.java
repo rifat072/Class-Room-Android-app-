@@ -63,7 +63,7 @@ public class GroupFragment extends Fragment {
 
         Initialize(mylaout);
 
-        RetriveAndDisplayGroup();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -105,6 +105,12 @@ public class GroupFragment extends Fragment {
         });
 
         return mylaout;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        RetriveAndDisplayGroup();
     }
 
     private void RetriveAndDisplayGroup() {

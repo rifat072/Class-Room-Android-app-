@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditActivity"
+    tools:context=".UnderFragments.UnderRoutineFragments.EditActivity"
     android:orientation="vertical"
-    android:weightSum="20"
-    android:background="@drawable/gradient">
+    android:weightSum="20">
 
 
     <TableLayout
@@ -35,40 +34,35 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sun"
-                android:textColor="@color/white" />
+                android:text="Sun" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Mon"
-                android:textColor="@color/white" />
+                android:text="Mon" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tues"
-                android:textColor="@color/white" />
+                android:text="Tues" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Wed"
-                android:textColor="@color/white" />
+                android:text="Wed" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Thurs"
-                android:textColor="@color/white" />
+                android:text="Thurs" />
         </TableRow>
 
         <TableRow
@@ -82,8 +76,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="08:00 08:50"
-                android:textColor="@color/white"/>
+                android:text="08:00 08:50" />
 
             <EditText
                 android:id="@+id/su1edit"
@@ -142,8 +135,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="08:50 09:40"
-                android:textColor="@color/white"/>
+                android:text="08:50 09:40" />
 
             <EditText
                 android:id="@+id/su2edit"
@@ -202,8 +194,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="09:40 10:30"
-                android:textColor="@color/white"/>
+                android:text="09:40 10:30" />
 
             <EditText
                 android:id="@+id/su3edit"
@@ -263,8 +254,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="10:40 11:30"
-                android:textColor="@color/white"/>
+                android:text="10:40 11:30" />
 
             <EditText
                 android:id="@+id/su4edit"
@@ -324,8 +314,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="11:30 12:20"
-                android:textColor="@color/white"/>
+                android:text="11:30 12:20" />
 
             <EditText
                 android:id="@+id/su5edit"
@@ -384,8 +373,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="12:30 01:10"
-                android:textColor="@color/white"/>
+                android:text="12:30 01:10" />
 
             <EditText
                 android:id="@+id/su6edit"
@@ -451,8 +439,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="02:30 03:20"
-                android:textColor="@color/white"/>
+                android:text="02:30 03:20" />
 
             <EditText
                 android:id="@+id/su7edit"
@@ -511,8 +498,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="03:20 04:10"
-                android:textColor="@color/white"/>
+                android:text="03:20 04:10" />
 
             <EditText
                 android:id="@+id/su8edit"
@@ -571,8 +557,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="04:10 05:00"
-                android:textColor="@color/white"/>
+                android:text="04:10 05:00" />
 
             <EditText
                 android:id="@+id/su9edit"

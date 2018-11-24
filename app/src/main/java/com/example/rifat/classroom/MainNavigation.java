@@ -10,23 +10,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.rifat.classroom.AccountActivity.Login;
-import com.example.rifat.classroom.UnderFragments.Account;
 import com.example.rifat.classroom.UnderFragments.MessageFragment;
 import com.example.rifat.classroom.UnderFragments.RoutineFragment;
-import com.example.rifat.classroom.UnderFragments.SearchFragment;
-import com.example.rifat.classroom.UnderFragments.SettingsFragment;
+import com.example.rifat.classroom.UnderFragments.UnderMessageFragments.UnderContactFragment.FindFriendActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainNavigation extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    private DatabaseReference UserRef;
     private FirebaseAuth mAuth;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToogle;
+    private TextView headerName,headerStatus;
+    private CircleImageView headerImage;
 
 
     private Toolbar mToolbar;
@@ -35,10 +45,15 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation);
         getSupportActionBar().setElevation(0);
-        //mToolbar = (Toolbar)findViewById(R.id.main_page_toolbar);
-        //setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Class Room");
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView =  navigationView.getHeaderView(0);
+        headerName = (TextView)hView.findViewById(R.id.header_profile_name);
+        headerStatus = (TextView)hView.findViewById(R.id.header_profile_status);
+        headerImage = (CircleImageView) hView.findViewById(R.id.header_profile_image);
+        UserRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        RetriveUserInfo();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         mToogle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -47,7 +62,7 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
@@ -56,8 +71,29 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
             navigationView.setCheckedItem(R.id.routine);
         }
 
+    }
 
+    private void RetriveUserInfo() {
+        mAuth = FirebaseAuth.getInstance();
+        UserRef.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    if(dataSnapshot.hasChild("name")) headerName.setText(dataSnapshot.child("name").getValue().toString());
+                    if(dataSnapshot.hasChild("status")) headerStatus.setText(dataSnapshot.child("status").getValue().toString());
+                    if(dataSnapshot.hasChild("image")) {
+                        String downloadurl = dataSnapshot.child("image").getValue().toString();
+                        Picasso.get().load(downloadurl).into(headerImage);
+                    }
 
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -68,14 +104,10 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new RoutineFragment()).commit();
                 break;
-            case R.id.settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new SettingsFragment()).commit();
-                break;
 
             case R.id.search:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new SearchFragment()).commit();
+                Intent serarchfriend = new Intent(getApplicationContext(), FindFriendActivity.class);
+                startActivity(serarchfriend);
                 break;
             case R.id.message:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -92,8 +124,8 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
                 break;
 
             case R.id.account:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Account()).commit();
+                Intent AccountSettings = new Intent(getApplicationContext(), AccountSettingsActivity.class);
+                startActivity(AccountSettings);
                 break;
 
 

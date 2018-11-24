@@ -43,6 +43,14 @@ public class Today extends Fragment {
         email = user.getEmail();
         ref = "UserTable/" + email + "/Routine/" + day;
         mDocRef = FirebaseFirestore.getInstance().document(ref );
+
+
+        return mylayout;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         mDocRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -53,8 +61,6 @@ public class Today extends Fragment {
                 }
             }
         });
-
-        return mylayout;
     }
 
     private int getDay() {

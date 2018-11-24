@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.rifat.classroom.AccountSettingsActivity;
 import com.example.rifat.classroom.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -91,11 +93,19 @@ public class Registration extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             String email = user.getEmail();
                             String uid = user.getUid();
-                            RootRef.child("Users").child(uid).setValue("");
-                            Toast.makeText(getApplicationContext(),"Account Created",Toast.LENGTH_SHORT).show();
-                            loadingbar.dismiss();
-                            startActivity(new Intent(getApplicationContext(),Login.class));
-                            Registration.this.finish();
+                            String devicetoken = FirebaseInstanceId.getInstance().getToken();
+
+                            RootRef.child("Users").child(uid).child("device token")
+                                    .setValue(devicetoken).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    Toast.makeText(getApplicationContext(),"Account Created",Toast.LENGTH_SHORT).show();
+                                    loadingbar.dismiss();
+                                    startActivity(new Intent(getApplicationContext(), AccountSettingsActivity.class));
+                                    Registration.this.finish();
+                                }
+                            });
+
                         }
                     }
                 });

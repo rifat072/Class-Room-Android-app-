@@ -1,5 +1,6 @@
-package com.example.rifat.classroom;
+package com.example.rifat.classroom.UnderFragments.UnderRoutineFragments;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.rifat.classroom.MainNavigation;
+import com.example.rifat.classroom.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,7 +60,8 @@ public class EditActivity extends AppCompatActivity {
                     mDocRef.set(dataToSave).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Log.d("mdocref","Saved");
+                            Toast.makeText(EditActivity.this,"Routine Updated",Toast.LENGTH_SHORT).show();
+                            EditActivity.this.finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
