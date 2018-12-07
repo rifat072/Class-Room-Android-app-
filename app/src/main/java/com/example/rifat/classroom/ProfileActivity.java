@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
         receiverUserId = getIntent().getExtras().get("visit_user_id").toString();
 
         userProfileImage = (CircleImageView) findViewById(R.id.visit_profile_image);
@@ -65,7 +67,10 @@ public class ProfileActivity extends AppCompatActivity {
                         Picasso.get().load(downloadurl).into(userProfileImage);
                     }
                     ManageChatRequest();
-                    
+                    getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + dataSnapshot.child("name").getValue().toString() + "</font>"));
+
+
+
                 }
             }
 

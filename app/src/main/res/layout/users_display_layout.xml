@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:layout_marginLeft="20dp"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
@@ -7,11 +8,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:orientation="horizontal">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_profile_image"
-            android:layout_width="85dp"
-            android:layout_height="85dp"
-            android:src="@drawable/profile_image"/>
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/profile_image" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

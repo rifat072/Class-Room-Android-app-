@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -44,8 +45,10 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation);
+        //startActivity(new Intent(MainNavigation.this,MainConversationActivity_v2.class));
         getSupportActionBar().setElevation(0);
-        getSupportActionBar().setTitle("Class Room");
+
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + "Class Room" + "</font>"));
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View hView =  navigationView.getHeaderView(0);
@@ -60,8 +63,6 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
         mDrawerLayout.addDrawerListener(mToogle);
         mToogle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
         navigationView.setNavigationItemSelectedListener(this);
 

@@ -5,10 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.rifat.classroom.UnderFragments.UnderMessageFragments.ChatFragment;
-import com.example.rifat.classroom.UnderFragments.UnderMessageFragments.ContactsFragment;
-import com.example.rifat.classroom.UnderFragments.UnderMessageFragments.GroupFragment;
-
 public class TabAccessorAdapterMessages extends FragmentPagerAdapter{
     public TabAccessorAdapterMessages(FragmentManager fm) {
         super(fm);

@@ -6,32 +6,13 @@
     android:orientation="vertical"
     android:weightSum="10">
 
-    <ScrollView
-        android:id="@+id/myScrollView"
+    <android.support.v7.widget.RecyclerView
+        android:layout_weight="10"
+        android:id="@+id/group_messages_list_of_users"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10">
+        android:layout_height="0dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/group_chat_text_display"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginStart="2dp"
-                android:padding="10dp"
-                android:text=""
-                android:textAllCaps="false"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-    </ScrollView>
+    </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/myLinearLayout"

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,8 @@ public class RequestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + "Manage Requests" + "</font>"));
+
 
         myRequestList = (RecyclerView)findViewById(R.id.chat_requests_list);
         myRequestList.setLayoutManager(new LinearLayoutManager(this));

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,10 +33,13 @@ public class FindFriendActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_find_friend);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + "Find Friends" + "</font>"));
+
         FindFriendRecyclerList = (RecyclerView)findViewById(R.id.find_friend_recycler_list);
         FindFriendRecyclerList.setLayoutManager(new LinearLayoutManager(this));
-        getSupportActionBar().setTitle("Find Friends");
+
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
     }
 
@@ -47,7 +51,7 @@ public class FindFriendActivity extends AppCompatActivity {
                 .setQuery(UsersRef,Contacts.class).build();
         FirebaseRecyclerAdapter<Contacts,FindFriendViewHolder> adapter = new FirebaseRecyclerAdapter<Contacts, FindFriendViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull FindFriendViewHolder holder, final int position, @NonNull Contacts model) {
+            protected void onBindViewHolder(@NonNull FindFriendViewHolder holder, final int position, @NonNull final Contacts model) {
                 holder.userName.setText(model.getName());
                 holder.userStatus.setText(model.getStatus());
                 Picasso.get().load(model.getImage()).placeholder(R.drawable.profile_image).into(holder.profileImage);
@@ -55,7 +59,7 @@ public class FindFriendActivity extends AppCompatActivity {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String visit_user_id = getRef(position).getKey();
+                        String visit_user_id = model.uid;
                         Intent profileIntent = new Intent(FindFriendActivity.this, ProfileActivity.class);
                         profileIntent.putExtra("visit_user_id",visit_user_id);
                         startActivity(profileIntent);

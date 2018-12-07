@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -62,23 +63,12 @@ public class ChatActivity extends AppCompatActivity {
         messageReceiverID = getIntent().getExtras().get("visit_user_id").toString();
         messageReceiverName = getIntent().getExtras().get("visit_user_name").toString();
         messageReceiverImage = getIntent().getExtras().get("visit_user_image").toString();
+        getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + messageReceiverName + "</font>"));
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.custom_chat_bar);
-        View customactionbar = getSupportActionBar().getCustomView();
 
-        UserName = customactionbar.findViewById(R.id.custom_profile_name);
-        UserLastSeen = customactionbar.findViewById(R.id.custom_user_last_seen);
-        UserImage = customactionbar.findViewById(R.id.custom_profile_image);
+
         RootRef = FirebaseDatabase.getInstance().getReference();
 
-        UserName.setText(messageReceiverName);
-        UserLastSeen.setText("Time Date");
-        if(!messageReceiverImage.equals("default")){
-            Picasso.get().load(messageReceiverImage).placeholder(R.drawable.profile_image)
-                    .into(UserImage);
-        }
 
         SendMessageButton = (ImageButton)findViewById(R.id.send_message_btn);
         SendMessageText = (EditText)findViewById(R.id.send_message_txt);

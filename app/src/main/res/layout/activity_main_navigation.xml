@@ -29,10 +29,11 @@
         app:headerLayout="@layout/header"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/bgtest"
         app:itemTextColor="@color/darkgray"
         app:itemIconTint="@color/darkgray"
         app:menu="@menu/drawermenu"
+
         android:layout_gravity="start">
 
 

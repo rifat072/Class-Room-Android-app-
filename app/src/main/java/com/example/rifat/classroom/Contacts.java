@@ -3,7 +3,7 @@ package com.example.rifat.classroom;
 public class Contacts {
 
 
-    public String name,status, image;
+    public String name,status, image,uid;
 
     public Contacts() {
     }
@@ -14,6 +14,12 @@ public class Contacts {
         this.image = image;
     }
 
+    public Contacts(String name, String status, String image, String uid) {
+        this.name = name;
+        this.status = status;
+        this.image = image;
+        this.uid = uid;
+    }
 
     public String getName() {
         return name;

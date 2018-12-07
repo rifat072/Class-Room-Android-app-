@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +20,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.rifat.classroom.R;
+import com.example.rifat.classroom.UnderFragments.UnderMessageFragments.UnderGroupChatFragment.GroupChatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,8 +31,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -43,11 +48,12 @@ public class GroupFragment extends Fragment {
     }
 
     private Button CreateGroup;
-    private DatabaseReference RootRefinsert;
+    private DatabaseReference UsersGroup;
     private ListView  listView;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_groups = new ArrayList<>();
-
+    private ArrayList<String> list_of_groups_id = new ArrayList<>();
+    private FirebaseAuth mAuth;
     private DatabaseReference RootRef;
 
 
@@ -58,8 +64,10 @@ public class GroupFragment extends Fragment {
         View mylaout = inflater.inflate(R.layout.fragment_group, container, false);
         CreateGroup = mylaout.findViewById(R.id.create_group);
 
-
+        mAuth = FirebaseAuth.getInstance();
         RootRef = FirebaseDatabase.getInstance().getReference().child("Groups");
+        UsersGroup = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid()).child("Groups");
+
 
         Initialize(mylaout);
 
@@ -68,8 +76,10 @@ public class GroupFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String CurrentGroupName = parent.getItemAtPosition(position).toString();
+                String CurrentGroupId = list_of_groups_id.get(position);
                 Intent groupChat = new Intent(getContext(),GroupChatActivity.class);
                 groupChat.putExtra("groupName",CurrentGroupName);
+                groupChat.putExtra("groupId",CurrentGroupId);
                 startActivity(groupChat);
             }
         });
@@ -114,18 +124,33 @@ public class GroupFragment extends Fragment {
     }
 
     private void RetriveAndDisplayGroup() {
-        RootRef.addValueEventListener(new ValueEventListener() {
+        UsersGroup.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Set<String> set = new HashSet<>();
+                list_of_groups.clear();
+                list_of_groups_id.clear();
                 Iterator iterator = dataSnapshot.getChildren().iterator();
                 while(iterator.hasNext()){
-                    set.add(((DataSnapshot)iterator.next()).getKey());
-                }
+                    DataSnapshot temp = (DataSnapshot)iterator.next();
+                    //list_of_groups.add(temp.getKey());
+                    list_of_groups_id.add(temp.getKey());
 
-                list_of_groups.clear();
-                list_of_groups.addAll(set);
+                    RootRef.child(temp.getKey()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            list_of_groups.add(dataSnapshot.child("GroupName").getValue().toString());
+
+                            arrayAdapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
                 arrayAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -133,6 +158,7 @@ public class GroupFragment extends Fragment {
 
             }
         });
+
     }
 
     private void Initialize(View mylaout) {
@@ -142,13 +168,26 @@ public class GroupFragment extends Fragment {
         listView.setAdapter(arrayAdapter);
     }
 
-    private void CreateNewGroup(String groupname) {
-        RootRef.child(groupname).setValue("").addOnCompleteListener(new OnCompleteListener<Void>() {
+    private void CreateNewGroup(final String groupname) {
+        DatabaseReference newGroup = RootRef.child(groupname).push();
+        final String newGroupId = newGroup.getKey();
+        HashMap<String,Object> groupDetails = new HashMap<>();
+        groupDetails.put("GroupName",groupname);
+        RootRef.child(newGroupId).setValue(groupDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+
                 if(task.isSuccessful()){
-                    Toast.makeText(getActivity(),"Created a new Group",Toast.LENGTH_LONG);
+                    Map<String, Object> mp = new HashMap<>();
+                    mp.put(newGroupId,"");
+                    UsersGroup.updateChildren(mp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getContext(),"Group Created",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
+
             }
         });
     }
