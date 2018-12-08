@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".AccountActivity.Login" />
-        <activity android:name=".MainNavigation" />
+        <activity android:name=".MainNavigation"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".AccountActivity.Registration" />
         <activity android:name=".UnderFragments.UnderRoutineFragments.EditActivity" />
         <activity android:name=".UnderFragments.UnderMessageFragments.UnderGroupChatFragment.GroupChatActivity" />

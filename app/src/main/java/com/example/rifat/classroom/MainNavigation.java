@@ -45,8 +45,10 @@ public class MainNavigation extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation);
+        mToolbar = findViewById(R.id.main_app_bar);
+        setSupportActionBar(mToolbar);
         //startActivity(new Intent(MainNavigation.this,MainConversationActivity_v2.class));
-        getSupportActionBar().setElevation(0);
+        //getSupportActionBar().setElevation(0);
 
         getSupportActionBar().setTitle(Html.fromHtml("<font color=\"black\">" + "Class Room" + "</font>"));
 

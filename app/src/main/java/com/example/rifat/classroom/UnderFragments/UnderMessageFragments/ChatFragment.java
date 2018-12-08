@@ -84,7 +84,7 @@ public class ChatFragment extends Fragment {
                                                 .into(holder.profileImage);
                                         UserImage = RequestUserImage;
                                     }
-                                    holder.userStatus.setText("Last Seen : \nDate + Time");
+                                    if(dataSnapshot.hasChild("status"))holder.userStatus.setText(dataSnapshot.child("status").getValue().toString());
                                     if(dataSnapshot.hasChild("name"))holder.userName.setText(dataSnapshot.child("name").getValue().toString());
                                     final String finalUserImage = UserImage;
                                     holder.itemView.setOnClickListener(new View.OnClickListener() {

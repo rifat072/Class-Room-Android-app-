@@ -19,14 +19,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="20">
 
         <EditText
             android:id="@+id/input_group_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:hint="Write your message here..."/>
+            android:layout_weight="20"
+            android:hint="Write your message here..." />
+        <ImageButton
+            android:id="@+id/send_file_group_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/attach_file" />
+
 
         <ImageButton
             android:id="@+id/send_message_button"

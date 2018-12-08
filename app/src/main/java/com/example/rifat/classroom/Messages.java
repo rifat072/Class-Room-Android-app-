@@ -2,7 +2,7 @@ package com.example.rifat.classroom;
 
 public class Messages {
 
-    private String from,message,type;
+    private String from,message,type,link;
 
     public Messages() {
     }
@@ -12,6 +12,17 @@ public class Messages {
         this.message = message;
         this.type = type;
     }
+
+    public Messages(String from, String message, String type, String link) {
+        this.from = from;
+        this.message = message;
+        this.type = type;
+        this.link = link;
+    }
+
+    public String getLink() { return link; }
+
+    public void setLink(String link) { this.link = link; }
 
     public String getFrom() {
         return from;
